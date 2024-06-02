@@ -1,0 +1,13 @@
+.current-chat-component {
+    flex:1;
+    background-color:white;
+    color:black;
+    padding:2em;
+}
+
+/* Header */
+.chat-header-component {
+    height:5em;
+}
+
+/* Chat */

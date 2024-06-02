@@ -1,0 +1,63 @@
+.chats-component {
+    width:25vw;
+    min-width:20vw;
+    background-color:rgb(245, 245, 245);
+    height:100vh;
+    color:black;
+}
+
+/* User Info */
+.user-component {
+    width:auto;
+    height:5rem;
+    padding:10px;
+}
+.user-info-wrapper {
+    display:flex;
+    transform:translateX(-50%, 50%);
+    justify-content:center;
+    gap:0.5em;
+    margin-top:1em;
+}
+.profile-pic {
+    outline:1px solid black;
+    border-radius:5em;
+    height:40px;
+    width:40px;
+}
+.profile-username {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Search */
+.chat-search-component {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-field {
+    width:70%;
+    outline:none;
+    height:1.5em;
+    border-radius:2em;
+    padding:0.25em;
+    background:white;
+    color:rgb(99, 99, 99);
+    border:none;
+    padding-inline:1em;
+    transition:width ease-in-out 0.2s;
+}
+
+.search-field:focus {
+    width:75%;
+}
+
+/* Open Chats */
+.open-chats-component {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding:2em;
+}

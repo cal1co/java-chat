@@ -22,8 +22,8 @@
 .profile-pic {
     outline:1px solid black;
     border-radius:5em;
-    height:40px;
-    width:40px;
+    min-height:2.5em;
+    min-width:2.5em;
 }
 .profile-username {
     display: flex;

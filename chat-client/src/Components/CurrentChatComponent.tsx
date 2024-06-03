@@ -5,8 +5,10 @@ import "./CurrentChatComponent.css"
 const CurrentChatComponent: React.FC = (): React.ReactElement => {
     return (
         <div className="current-chat-component">
-            <ChatHeaderComponent/>
-            <ChatComponent/>
+            <div className="chat-components-wrapper">
+                <ChatHeaderComponent/>
+                <ChatComponent/>
+            </div>
         </div>
     )
 }

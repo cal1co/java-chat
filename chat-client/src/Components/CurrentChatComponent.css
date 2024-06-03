@@ -1,3 +1,8 @@
+:root {
+    --accent: #E8D1FF;
+    --gray-accent: rgb(99, 99, 99);
+}
+
 .current-chat-component {
     flex:1;
     background-color:white;
@@ -5,50 +10,116 @@
     padding:10px;
     padding-inline:2em;
 }
+.chat-components-wrapper {
+    width:70vw;
+}
 
 /* Header */
 .chat-header-component {
     margin-top:1em;
     height:5em;
     padding-block:0.5em;
+    border-bottom:2px solid rgb(193, 193, 193);
 }
 
 /* Chat */
+.chat-component {
+    display:flex;
+    flex-direction:column;
+    height: 80vh;
+    width:100%;
+    margin: 0 auto;
+}
+
+.chat-wrapper {
+    flex: 1;
+    overflow-y:auto;
+    margin-bottom:1em;
+    border-bottom:2px solid rgb(193, 193, 193);
+    display:flex;
+    flex-direction:column;
+    scroll-behavior:smooth;
+    padding-bottom:1em;
+}
+
+.chat-message {
+    white-space: pre-wrap;
+    margin-inline:1em;
+    margin-top:1em;
+    max-width:30vw;
+    width:fit-content;
+    display:flex;
+    padding:0.75em;
+    border-radius:1em;
+}
+.message-content {
+    overflow-wrap: break-word;
+    word-wrap:break-word;
+    hyphens:auto;
+}
+.user-message {
+    background-color:var(--accent);
+    align-self:flex-end;
+}
+.user-message > .message-content::selection {
+    background-color:rgba(255, 255, 255, 0.6);
+}
+.non-user-message {
+    background-color:rgb(245, 245, 245);
+    align-self:flex-start;
+}
+.non-user-message > .message-content::selection {
+    background-color: #e8d1ffb6;
+}
+
 .message-wrapper {
     display: flex;
-    width:25em;
+    min-width:25em;
+    width:65vw;
+    margin: 0 auto;
+    margin-top:1em;
     justify-content:center;
     align-items:center
 }
 
-.message-wrapper input {
-    height:3em;
+.message-wrapper textarea {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    min-height:3em;
     flex: 1;
-    padding: 8px;
+    padding: 0.75em;
     border-top-left-radius:2em;
     border-bottom-left-radius:2em;
     outline:none;
     border:none;
-    color: rgb(99, 99, 99);
+    color: var(--gray-accent);
     background-color:rgb(245, 245, 245);
     border-radius: 2em;
+    font-weight:600;
+    padding-left:1em;
+    padding-right:3.5em;
+    resize:none;
+    overflow:hidden;
+    box-sizing:border-box;
+}
+.message-wrapper textarea::selection {
+    background:#e8d1ffb6;
 }
 
 .message-wrapper button {
     height:3em;
     width:3em;
-    background-color: #E8D1FF;
+    background-color: var(--accent);
     color: #fff;
     border: none;
     border-radius: 10em;
-    transform:translate(-125%);
+    transform:translate(-100%);
     justify-content:center;
     align-items:center;
     cursor: pointer;
 }
 
 .message-wrapper button:hover {
-    background-color: #e8d1ffc5;
+    background-color: #dbbdfac5;
 }
 
 .message-wrapper button:disabled {

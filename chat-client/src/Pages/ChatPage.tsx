@@ -6,9 +6,8 @@ const ChatApp:React.FC = ():React.ReactElement => {
     return (
         <div className="chat">
             <ChatsComponent/>
-            <CurrentChatComponent/>
         </div>
     )
 } 
 
-export default ChatApp;
+export default ChatApp; 

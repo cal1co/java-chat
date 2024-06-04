@@ -1,5 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
+
 import { v4 as uuidv4 } from 'uuid';
+import SockJS from 'sockjs-client';
+import { Client, Frame } from '@stomp/stompjs';
 
 type Message = {
     messageId: string
@@ -16,6 +19,39 @@ const ChatComponent: React.FC = (): React.ReactElement => {
 
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const chatWrapperRef = useRef<HTMLDivElement>(null);
+    const clientRef = useRef<Client | null>(null);
+
+    useEffect(() => {
+        const socket = new SockJS('http://localhost:8080/chat');
+        const client = new Client({
+            webSocketFactory: () => socket,
+            debug: (str) => console.log("DEBUG", str),
+            onConnect: (frame: Frame) => {
+                console.log('Connected: ' + frame);
+                client.subscribe('/topic/public', (message) => {
+                    if (message.body) {
+                        console.log(message)
+                        const receivedMessage: Message = JSON.parse(message.body);
+                        setMessages((prevMesages) => [...prevMesages, receivedMessage])
+                    }
+                })
+            },
+            onStompError: (frame: Frame) => {
+                console.log('Broker reported error: ' + frame.headers['message']);
+                console.log('Additional details: ' + frame.body);
+            }
+        })
+
+        client.activate();
+        clientRef.current = client;
+
+        return () => {
+            if (clientRef.current) {
+                clientRef.current.deactivate();
+            }
+        }
+
+    }, [])
 
     useEffect(() => {
         adjustTextareaHeight();
@@ -28,14 +64,24 @@ const ChatComponent: React.FC = (): React.ReactElement => {
     }, [messages]);
 
     const sendMessage = () => {
+        if (message.trim() === '') return; 
+
         const newMessage: Message = {
             messageId: uuidv4(),
             message,
             userId: 1,
-            sender: "Alex",
+            sender: "Ro",
             timestamp: new Date()
         }
-        setMessages([...messages, newMessage]);
+        
+        if (clientRef.current) {
+            clientRef.current.publish({
+                destination:'/app/chat.sendMessage',
+                body: JSON.stringify(newMessage),
+            })
+        }
+
+        // setMessages([...messages, newMessage]);
         setMessage('');
     }
 

@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import './index.css'
 import Root from './routes/root';
-import ChatsComponent from './Components/ChatsComponent';
 import CurrentChatComponent from './Components/CurrentChatComponent';
 
 const router = createBrowserRouter([

@@ -1,5 +1,4 @@
 import ChatsComponent from "../Components/ChatsComponent";
-import CurrentChatComponent from "../Components/CurrentChatComponent";
 import "./ChatPage.css"
 
 const ChatApp:React.FC = ():React.ReactElement => {
